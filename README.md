@@ -8,7 +8,7 @@
 
 The program accepts both an image from your computer or an image from the web.
 
-First, the program will check if you have the default folders created. It will automatically create the if they are not there.
+First, run CharSheetGen.py. The program will check if you have the default folders created. It will automatically create the if they are not there.
 
 Next, it prompts you whether you want to download a default CSS file from https://dfstudios.neocities.org/charsheetmaker/styles.css to style the HTML files. You can input Y or N to select this.
 
