@@ -1,0 +1,9 @@
+# test files
+txt/
+
+# generated folders
+conf/
+sheets/
+temp/
+
+README.md.backup
