@@ -12,7 +12,7 @@ First, the program will check if you have the default folders created. It will a
 
 Next, it prompts you whether you want to download a default CSS file from https://dfstudios.neocities.org/charsheetmaker/styles.css to style the HTML files. You can input Y or N to select this.
 
-![Image](./https://dfstudios.neocities.org/img/01.png "The terminal on first open")
+<img src="https://dfstudios.neocities.org/img/01.png">
 
 After deciding on whether to download a CSS file, you will be prompted to enter the location of an image file. For this example, I will use the image at https://dfstudios.neocities.org/img/demo.jpg. Note that for now, CSG only works with JPEG files.
 
