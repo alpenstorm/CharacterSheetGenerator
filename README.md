@@ -18,20 +18,20 @@ After deciding on whether to download a CSS file, you will be prompted to enter 
 
 Next, you will be prompted to enter the character's name and origin. For this example, I chose Yoshino Himekawa from Date A Live because she is my favorite character.
 
-![Image](./https://dfstudios.neocities.org/img/02.png "Inputting the name, origin, and image")
+<img src="https://dfstudios.neocities.org/img/02.png">
 
 Finally, you will be prompted to enter basic info, other info, combat info, and some quotes. These are files in the .txt format, and can be saved anywhere on your computer, but I suggest saving them close to the root folder of the program to make the commands easier to type.
 
 Note that CSG automatically parses the text files and replaces the newline characters with HTML break characters.
 
-![Image](./https://dfstudios.neocities.org/img/03.png "Inputting the info txt files")
+<img src="https://dfstudios.neocities.org/img/03.png">
 
 CSG will prompt to exit or create a new sheet. It will export the sheet in sheets/CSG {name}, ({origin}).html.
 
 This is how the HTML file looks in VS Code:
 
-![Image](./https://dfstudios.neocities.org/img/04.png "VS Code")
+<img src="https://dfstudios.neocities.org/img/04.png">
 
 And this is how it looks in the browser (edge for me):
 
-![Image](./https://dfstudios.neocities.org/img/05.png "Browser")
+<img src="https://dfstudios.neocities.org/img/05.png">
