@@ -1,18 +1,23 @@
 # Character Sheet Generator
 # by alpenstorm
 
+# import necessary libraries
 import os
 import json
 import urllib.request
 
+# some global variables 
 global saveFolder
 global tempFolder
 global settings
 
 print('''**********************************************
-CHARACTER SHEET GENERATOR v.1.0.0
+CHARACTER SHEET GENERATOR v.1.0.1
 by alpenstorm
 **********************************************''')
+
+# there are three pairs of try/excepts to create the config file and folder,
+# temp folder, and save folder
 
 try:
     os.listdir("conf/")
@@ -42,17 +47,20 @@ except:
 
 try:
     os.listdir(saveFolder)
+    os.listdir(tempFolder)
 except:
     print(f"NO SAVE FOLDER FOUND AT {saveFolder}, CREATING...")
     os.mkdir(saveFolder)
-
-try:
-    os.listdir(tempFolder)
-except:
     print(f"NO TEMP FOLDER FOUND AT {tempFolder}, CREATING...")
     os.mkdir(tempFolder)
 
-#DEFINES
+# Function Explanations:
+# clear() - clears the terminal when called
+# css(message) - creates a menu that downloads the default css file from my website
+# br(input_file_path, output_file_path) - takes an input txt file and creates a new text file with html <br> tags instead of newline chracters
+# read_file_contents(file_path) -> str - takes an input file, reads it, and stores the text in a variable
+# write(img, name, origin, basicinfo, otherinfo, combatinfo, quotes) - writes these variables to an html file
+# main() - puts it all together
 
 def clear():
     if os.name == 'nt':
@@ -64,11 +72,11 @@ def css(message):
     if message == "y" or message == "Y":
         urllib.request.urlretrieve("https://dfstudios.neocities.org/charsheetmaker/styles.css", f"{saveFolder}/styles.css")
     elif message == "n" or message == "N":
-        message = ""
+        return
     else:
         css(css = input("[Y,N]: "))
 
-def replace_line_breaks_with_br(input_file_path, output_file_path):
+def br(input_file_path, output_file_path):
     replacements = {'\n': '<br>'}
     try:
         with open(input_file_path, 'r') as infile, open(output_file_path, 'w') as outfile:
@@ -88,18 +96,17 @@ def read_file_contents(file_path) -> str:
     except FileNotFoundError:
         return "File not found."
 
-def write(img, name, origin, basicinfo, otherinfo, combatinfo, quotes):
+def write(img, maximgheight, name, origin, basicinfo, otherinfo, combatinfo, quotes):
     basicinfo = read_file_contents(f'{tempFolder}/basicInfoTemp.txt')
     otherinfo = read_file_contents(f'{tempFolder}/otherInfoTemp.txt')
     combatinfo = read_file_contents(f'{tempFolder}/combatInfoTemp.txt')
     quotes = read_file_contents(f'{tempFolder}/quotesTemp.txt')
     
-    with open(f'{saveFolder}/CSG {name}, ({origin}).html', "w") as w:
-        w.write(f'''
-<!DOCTYPE html>
+    with open(f'{saveFolder}/CSG {name} ({origin}).html', "w") as w:
+        w.write(f'''<!DOCTYPE html>
 <link rel="stylesheet" href="styles.css">
 
-<img src="{img}" alt="{name}">
+<img src="{img}" alt="{name}" style="max-height: {maximgheight}px; float: right;">
 
 <h1>Name: {name}</h1>
 <h3>Origin: {origin}</h3>
@@ -118,6 +125,7 @@ def write(img, name, origin, basicinfo, otherinfo, combatinfo, quotes):
     <blockquote>{quotes}</blockquote>
 </body>
 ''')
+
     w.close()
     print(f"Successfully wrote to {saveFolder}/CSG {name}, ({origin}).html")
     os.remove(f"{tempFolder}/basicInfoTemp.txt")
@@ -128,12 +136,13 @@ def write(img, name, origin, basicinfo, otherinfo, combatinfo, quotes):
 
 def main():
     write(input("Enter the location of the image file for the char sheet (can be a web link): "), 
+          input("Enter the max image height (in pixels): "),
           input("Enter the character's name: "), 
           input("Enter the character's origin: "),
-          replace_line_breaks_with_br(input("Enter text file containing basic info: "), f"{tempFolder}/basicInfoTemp.txt"),
-          replace_line_breaks_with_br(input("Enter text file containing other info: "), f"{tempFolder}/otherInfoTemp.txt"),
-          replace_line_breaks_with_br(input("Enter text file containing combat info: "), f"{tempFolder}/combatInfoTemp.txt"),
-          replace_line_breaks_with_br(input("Enter text file containing quotes: "), f"{tempFolder}/quotesTemp.txt")
+          br(input("Enter text file containing basic info: "), f"{tempFolder}/basicInfoTemp.txt"),
+          br(input("Enter text file containing other info: "), f"{tempFolder}/otherInfoTemp.txt"),
+          br(input("Enter text file containing combat info: "), f"{tempFolder}/combatInfoTemp.txt"),
+          br(input("Enter text file containing quotes: "), f"{tempFolder}/quotesTemp.txt")
     )
 
     xt = input("Do you want to create another sheet? [Y,N]: ")
@@ -145,6 +154,8 @@ def main():
         quit()
     else:
         xt = input("[Y,N]: ") 
+
+# Start the program and ask to download a CSS file
 
 css(input("Do you want to download a CSS file for the style? [Y,N]: "))
 main()
