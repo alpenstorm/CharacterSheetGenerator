@@ -188,7 +188,7 @@ def read_file_contents(file_path) -> str:
         return "File not found."
 
 # writes the input variables to an html file
-def write(img, maximgheight, name, race, origin, basicinfo, otherinfo, combatinfo, quotes, trivia):
+def write(img, maximgheight, name, origin, race, basicinfo, otherinfo, combatinfo, quotes, trivia):
     basicinfo = read_file_contents(f'{tempFolder}/basicInfoTemp.txt')
     otherinfo = read_file_contents(f'{tempFolder}/otherInfoTemp.txt')
     combatinfo = read_file_contents(f'{tempFolder}/combatInfoTemp.txt')
@@ -245,8 +245,8 @@ def main():
     write(input("Enter the location of the image file for the char sheet (can be a web link): "), 
           input("Enter the max image height (in pixels): "),
           input("Enter the character's name: "), 
-          input("Enter the character's race: "),
           input("Enter the character's origin: "),
+          input("Enter the character's race: "),
           insert_br(input("Enter text file containing basic info (default is txt/basic.csg): "), "txt/basic.csg", f"{tempFolder}/basicInfoTemp.txt"),
           insert_br(input("Enter text file containing other info (default is txt/other.csg): "), "txt/other.csg", f"{tempFolder}/otherInfoTemp.txt"),
           insert_br(input("Enter text file containing combat info (default is txt/combat.csg): "),"txt/combat.csg", f"{tempFolder}/combatInfoTemp.txt"),
