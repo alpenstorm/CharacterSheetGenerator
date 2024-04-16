@@ -13,7 +13,7 @@ global tempFolder
 global settings
 
 print('''**********************************************
-Character Sheet Generator (CSG) v.1.1.1
+Character Sheet Generator (CSG) v.1.1.2
 by alpenstorm
 **********************************************''')
 
@@ -188,7 +188,7 @@ def read_file_contents(file_path) -> str:
         return "File not found."
 
 # writes the input variables to an html file
-def write(img, maximgheight, name, origin, basicinfo, otherinfo, combatinfo, quotes, trivia):
+def write(img, maximgheight, name, race, origin, basicinfo, otherinfo, combatinfo, quotes, trivia):
     basicinfo = read_file_contents(f'{tempFolder}/basicInfoTemp.txt')
     otherinfo = read_file_contents(f'{tempFolder}/otherInfoTemp.txt')
     combatinfo = read_file_contents(f'{tempFolder}/combatInfoTemp.txt')
@@ -202,7 +202,8 @@ def write(img, maximgheight, name, origin, basicinfo, otherinfo, combatinfo, quo
 <img src="{img}" alt="{name}" style="max-height: {maximgheight}px; float: right;">
 
 <h1>Name: {name}</h1>
-<h3>Origin: {origin}</h3>
+<h2>Origin: {origin}</h2>
+<h3>Race: {race}</h3>
 
 <body>
     <h4>Basic Information</h4>
@@ -244,6 +245,7 @@ def main():
     write(input("Enter the location of the image file for the char sheet (can be a web link): "), 
           input("Enter the max image height (in pixels): "),
           input("Enter the character's name: "), 
+          input("Enter the character's race: "),
           input("Enter the character's origin: "),
           insert_br(input("Enter text file containing basic info (default is txt/basic.csg): "), "txt/basic.csg", f"{tempFolder}/basicInfoTemp.txt"),
           insert_br(input("Enter text file containing other info (default is txt/other.csg): "), "txt/other.csg", f"{tempFolder}/otherInfoTemp.txt"),
